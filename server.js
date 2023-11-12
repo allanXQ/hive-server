@@ -8,11 +8,11 @@ const cookieParser = require("cookie-parser");
 const { errorHandler } = require("@middleware");
 const { DBConn, allowedOrigins } = require("@config");
 
-if (process.env.APP_ENV === "production") {
-  require("dotenv").config({ path: ".env.prod" });
-} else {
-  require("dotenv").config({ path: ".env.dev" });
-}
+// if (process.env.APP_ENV === "production") {
+//   require("dotenv").config({ path: ".env.prod" });
+// } else {
+//   require("dotenv").config({ path: ".env.dev" });
+// }
 
 const app = express();
 const port = process.env.PORT || 5000;
