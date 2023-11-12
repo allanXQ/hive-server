@@ -34,6 +34,7 @@ const users = mongoose.Schema(
     passwordResetToken: { type: String },
     password: { type: String, required: isLocalAuth },
     referrals: [Referrals],
+    photoURL: { type: String },
   },
   {
     timestamps: true,

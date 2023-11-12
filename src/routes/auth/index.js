@@ -44,6 +44,6 @@ router.post(
   errorHOC(updatePassword)
 );
 
-router.get("/google", googleOAuth);
+router.post("/google", googleOAuth);
 
 module.exports = router;
