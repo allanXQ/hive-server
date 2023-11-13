@@ -2,14 +2,16 @@ const { default: axios } = require("axios");
 const { walletConfig } = require("@config");
 const { messages } = require("@utils");
 const { users } = require("@models");
+const Services = require("@services");
 
 const mpesaDeposit = async (req, res) => {
-  const { phone, amount } = req.body;
+  const { userId, phone, amount } = req.body;
   const user = await users.findOne({ phone });
   if (!user) {
-    return res.status(400).json({
-      message: messages.invalidPhoneNumber,
-    });
+    const userUpdate = await Services.updateOne(users, { userId }, { phone });
+    if (!userUpdate) {
+      return res.status(500).json({ message: messages.serverError });
+    }
   }
 
   const { minDeposit, maxDeposit } = walletConfig;
