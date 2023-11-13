@@ -51,4 +51,6 @@ router.post(
   errorHOC(userInfo)
 );
 
+router.post("/user-update", verifyjwt, errorHOC(userInfo));
+
 module.exports = router;
