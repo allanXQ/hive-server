@@ -52,6 +52,7 @@ const updatePasswordSchema = yup.object().shape({
 });
 
 const depositSchema = yup.object().shape({
+  userId: yup.string().required(),
   amount: yup
     .number()
     .lessThan(walletConfig.maxDeposit)
@@ -75,36 +76,6 @@ const withdrawalSchema = yup.object().shape({
     .required(),
 });
 
-const p2pOrderSchema = yup.object().shape({
-  userId: yup.string().required(),
-  assetName: yup.string().required(),
-  orderType: yup.string().required(),
-  amount: yup.number().moreThan(0).required(),
-  price: yup.number().required(),
-});
-
-const limitOrderSchema = yup.object().shape({
-  userId: yup.string().required(),
-  assetName: yup.string().required(),
-  amount: yup.number().moreThan(0).required(),
-});
-
-const cancelOrderSchema = yup.object().shape({
-  orderId: yup.string().required(),
-  userId: yup.string().required(),
-});
-
-const addAssetSchema = yup.object().shape({
-  assetName: yup.string().required(),
-  amount: yup.number().moreThan(0).required(),
-  coinPair: yup.string().required(),
-});
-
-const historicalKlinesSchema = yup.object().shape({
-  assetName: yup.string().required(),
-  klineInterval: yup.string().required(),
-});
-
 module.exports = {
   regSchema,
   loginSchema,
@@ -114,9 +85,4 @@ module.exports = {
   updatePasswordSchema,
   depositSchema,
   withdrawalSchema,
-  p2pOrderSchema,
-  cancelOrderSchema,
-  limitOrderSchema,
-  addAssetSchema,
-  historicalKlinesSchema,
 };
