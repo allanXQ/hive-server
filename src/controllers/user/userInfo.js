@@ -30,6 +30,10 @@ const userInfo = async (req, res) => {
         password: 0,
         refreshToken: 0,
         passwordResetToken: 0,
+        createdAt: 0,
+        updatedAt: 0,
+        _id: 0,
+        role: 0,
         // any other fields you want to exclude...
       },
     },
