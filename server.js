@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const { errorHandler } = require("@middleware");
 const { DBConn, allowedOrigins } = require("@config");
+const axios = require("axios");
 
 // if (process.env.APP_ENV === "production") {
 //   require("dotenv").config({ path: ".env.prod" });
@@ -40,5 +41,21 @@ app.use("/api/v1/auth/", require("@routes/auth"));
 app.use("/api/v1/user/", require("@routes/user"));
 
 app.use(errorHandler);
+
+const pingInterval = 840000; // 14 minutes in milliseconds
+
+function pingSelf() {
+  axios
+    .get("https://hive-server.onrender.com/api/v1/user/user-info")
+    .then((response) => {
+      console.log("Service pinged successfully:", response.status);
+    })
+    .catch((error) => {
+      console.error("Error pinging service:", error);
+    });
+}
+
+// Set up the interval to ping your service every 14 minutes
+setInterval(pingSelf, pingInterval);
 
 DBConn(app, port);
