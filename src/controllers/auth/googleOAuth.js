@@ -10,14 +10,15 @@ const googleOAuth = async (req, res) => {
   try {
     // const code = req.query.code;
     const { firstName, lastName, email, photoURL, phoneNumber } = req.body;
+    console.log(req.body);
     const findUser = await users.findOne({ email });
     if (!findUser) {
       const createUser = await users.create({
         userId: id,
         email,
         username: email.slice(0, email.indexOf("@")),
-        firstName,
-        lastName,
+        firstname: firstName,
+        lastname: lastName,
         photoURL,
         status: "Verified",
         authMethod: "google",
