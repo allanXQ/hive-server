@@ -1,4 +1,6 @@
 require("dotenv").config();
+const crypto = require("crypto");
+
 const id = crypto.randomBytes(16).toString("hex");
 const { users } = require("@models");
 const { generateTokens, setCookies } = require("@utils");
