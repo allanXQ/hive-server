@@ -23,6 +23,7 @@ const users = mongoose.Schema(
     email: { type: String, required: true, unique: true },
     phone: { type: Number, required: isLocalAuth, unique: true, sparse: true },
     accountBalance: { type: Number, default: 0 },
+    chamas: { type: Array },
     authMethod: {
       type: String,
       enum: ["local", "google"],

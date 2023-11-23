@@ -76,6 +76,13 @@ const withdrawalSchema = yup.object().shape({
     .required(),
 });
 
+const createChamaSchema = yup.object().shape({
+  name: yup.string().required(),
+  type: yup.string().required(),
+  userId: yup.string().required(),
+  description: yup.string().required(),
+});
+
 module.exports = {
   regSchema,
   loginSchema,
@@ -85,4 +92,5 @@ module.exports = {
   updatePasswordSchema,
   depositSchema,
   withdrawalSchema,
+  createChamaSchema,
 };
