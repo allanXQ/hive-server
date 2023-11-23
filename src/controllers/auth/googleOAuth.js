@@ -1,10 +1,8 @@
 require("dotenv").config();
-const uuid = require("uuid");
+const id = crypto.randomBytes(16).toString("hex");
 const { users } = require("@models");
 const { generateTokens, setCookies } = require("@utils");
 const { messages } = require("@utils");
-
-const id = uuid.v4();
 
 const googleOAuth = async (req, res) => {
   try {

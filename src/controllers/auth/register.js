@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const id = crypto.randomBytes(6).toString("hex");
+const id = crypto.randomBytes(16).toString("hex");
 const { users } = require("@models");
 const bcrypt = require("bcrypt");
 const { messages } = require("@utils");
@@ -21,7 +21,7 @@ const register = async (req, res) => {
   }
   const password = await bcrypt.hash(plainPassword, 10);
   await users.create({
-    userId: id,
+    userId: id + username,
     username,
     email,
     phone,
