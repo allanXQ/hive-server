@@ -1,11 +1,11 @@
-const mongoose = require("mongoose")```
-types:{
-    Rotating Savings and Credit Associations (ROSCAs),
-    Accumulating Savings and Credit Associations (ASCAs)
-    Investment Groups
-    Welfare/Social Chamas
-}
-```;
+const mongoose = require("mongoose");
+
+// types:{
+//     Rotating Savings and Credit Associations (ROSCAs),
+//     Accumulating Savings and Credit Associations (ASCAs)
+//     Investment Groups
+//     Welfare/Social Chamas
+// }
 
 const contributions = new mongoose.Schema({
   type: {

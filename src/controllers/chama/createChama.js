@@ -1,4 +1,4 @@
-const Services = require("../../services");
+const Services = require("@services");
 const { Chama } = require("@models");
 
 const createChama = async (req, res) => {
