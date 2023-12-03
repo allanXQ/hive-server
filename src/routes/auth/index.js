@@ -17,6 +17,7 @@ const {
   forgotPasswordSchema,
   resetPasswordSchema,
   userInfoSchema,
+  googleOAuthSchema,
 } = require("@yupschemas");
 
 const { errorHOC } = require("@utils");
@@ -44,6 +45,6 @@ router.post(
   errorHOC(updatePassword)
 );
 
-router.post("/google", googleOAuth);
+router.post("/google", formValidate(googleOAuthSchema), errorHOC(googleOAuth));
 
 module.exports = router;

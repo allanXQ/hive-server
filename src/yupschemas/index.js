@@ -25,6 +25,14 @@ const loginSchema = yup.object().shape({
   password: yup.string().required(),
 });
 
+const googleOAuthSchema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  email: yup.string().email().required(),
+  photoURL: yup.string().nullable(),
+  phoneNumber: yup.string().nullable(),
+});
+
 const userInfoSchema = yup.object().shape({
   userId: yup.string().required(),
 });
@@ -83,6 +91,11 @@ const createChamaSchema = yup.object().shape({
   description: yup.string().required(),
 });
 
+const getChamaSchema = yup.object().shape({
+  userId: yup.string().required(),
+  memberships: yup.array().required(),
+});
+
 module.exports = {
   regSchema,
   loginSchema,
@@ -93,4 +106,6 @@ module.exports = {
   depositSchema,
   withdrawalSchema,
   createChamaSchema,
+  getChamaSchema,
+  googleOAuthSchema,
 };
