@@ -23,7 +23,7 @@ const contributions = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+//events: contributions
 const chamaSchema = new mongoose.Schema(
   {
     name: {
