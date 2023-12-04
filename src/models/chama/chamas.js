@@ -7,21 +7,22 @@ const mongoose = require("mongoose");
 //     Welfare/Social Chamas
 // }
 
-const contributions = new mongoose.Schema({
-  type: {
-    type: String,
-    enum: ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"],
-    required: true,
+const contributions = new mongoose.Schema(
+  {
+    type: {
+      type: String,
+      enum: ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly"],
+      required: true,
+    },
+    amount: {
+      type: Number,
+      required: true,
+    },
   },
-  amount: {
-    type: Number,
-    required: true,
-  },
-  date: {
-    type: Date,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const chamaSchema = new mongoose.Schema(
   {
@@ -34,13 +35,6 @@ const chamaSchema = new mongoose.Schema(
       enum: ["ROSCAs", "ASCAs", "Investment Groups", "Welfare/Social Chamas"],
       required: true,
     },
-    admin: {
-      type: String,
-      required: true,
-    },
-    members: {
-      type: Array,
-    },
     contributions: [contributions],
   },
   {
@@ -48,4 +42,4 @@ const chamaSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Chama", chamaSchema);
+module.exports = mongoose.model("chama", chamaSchema);

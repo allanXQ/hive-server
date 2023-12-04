@@ -1,9 +1,13 @@
 const users = require("./users");
 const mpesaDeposits = require("./mpesaDeposits");
-const Chama = require("./chamas");
+const chama = require("./chama/chamas");
+const memberships = require("./chama/memberships");
+const chamaTypes = require("./chama/types");
 
 module.exports = {
   users,
   mpesaDeposits,
-  Chama,
+  chama,
+  memberships,
+  chamaTypes,
 };
