@@ -2,7 +2,7 @@ const Services = require("@services");
 const { chama } = require("@models");
 
 const getChamas = async (req, res) => {
-  const { userId, memberships } = req.body;
+  const { memberships } = req.body;
   const chamas = await Services.find(chama, {
     name: {
       $in: memberships,

@@ -3,7 +3,7 @@ const { messages } = require("@utils");
 
 const withdrawalHistory = async (req, res) => {
   const { userId } = req.body;
-  const getWithdrawals = await withdrawals.find({ userId });
+  const getWithdrawals = await withdrawals.find({ _id: userId });
 
   return res
     .status(200)

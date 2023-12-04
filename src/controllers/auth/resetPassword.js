@@ -6,11 +6,11 @@ const { messages } = require("@utils");
 
 const resetPassword = async (req, res) => {
   const { password } = req.body;
-  const { id, token } = req.params;
-  if (!token || !id || !password) {
+  const { userId, token } = req.params;
+  if (!token || !userId || !password) {
     return res.status(400).json({ message: messages.invalidRequest });
   }
-  const getUser = await users.findOne({ userId: id });
+  const getUser = await users.findOne({ _id: userId });
   if (!getUser) {
     return res.status(400).json({ message: messages.userNotFound });
   }
@@ -26,7 +26,7 @@ const resetPassword = async (req, res) => {
   }
   const hashedpassword = await bcrypt.hash(password, 10);
   const userUpdate = await users.findOneAndUpdate(
-    { userId: id },
+    { _id: userId },
     {
       $set: { password: hashedpassword, passwordResetToken: "" },
     },

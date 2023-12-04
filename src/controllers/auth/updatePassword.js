@@ -5,7 +5,7 @@ const { messages } = require("@utils");
 
 const updatePassword = async (req, res) => {
   const { userId, oldPassword, newPassword: plainPassword } = req.body;
-  const getUser = await users.findOne({ userId });
+  const getUser = await users.findOne({ _id: userId });
   if (!getUser) {
     return res.status(400).json({ message: messages.userNotFound });
   }
@@ -15,7 +15,7 @@ const updatePassword = async (req, res) => {
   }
   hashedPassword = await bcrypt.hash(plainPassword, 10);
   const userUpdate = await users.updateOne(
-    { userId },
+    { _id: userId },
     {
       $set: { password: hashedPassword },
     }

@@ -7,7 +7,7 @@ const mpesaDepositHistory = async (req, res) => {
     return res.status(400).json({ message: messages.invalidRequest });
   }
 
-  const depositHistory = await mpesaDeposits.find({ userId });
+  const depositHistory = await mpesaDeposits.find({ _id: userId });
   return res
     .status(200)
     .json({ message: messages.requestSuccessful, payload: depositHistory });

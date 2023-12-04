@@ -8,7 +8,11 @@ const mpesaDeposit = async (req, res) => {
   const { userId, phone, amount } = req.body;
   const user = await users.findOne({ phone });
   if (!user) {
-    const userUpdate = await Services.updateOne(users, { userId }, { phone });
+    const userUpdate = await Services.updateOne(
+      users,
+      { _id: userId },
+      { phone }
+    );
     if (!userUpdate) {
       return res.status(500).json({ message: messages.serverError });
     }

@@ -1,18 +1,19 @@
 const { users } = require("@models");
 const { messages } = require("@utils");
+const mongoose = require("mongoose");
 
 const userInfo = async (req, res) => {
   const { userId } = req.body;
   const userData = await users.aggregate([
     {
       $match: {
-        userId,
+        _id: new mongoose.Types.ObjectId(userId),
       },
     },
     {
       $lookup: {
         from: "mpesadeposits",
-        localField: "userId",
+        localField: "_id",
         foreignField: "userId",
         as: "mpesaDeposits",
       },
@@ -20,21 +21,34 @@ const userInfo = async (req, res) => {
     {
       $lookup: {
         from: "withdrawals",
-        localField: "userId",
+        localField: "_id",
         foreignField: "userId",
         as: "withdrawals",
       },
     },
     {
       $project: {
-        password: 0,
-        refreshToken: 0,
-        passwordResetToken: 0,
-        createdAt: 0,
-        updatedAt: 0,
-        _id: 0,
-        role: 0,
-        // any other fields you want to exclude...
+        userId: "$_id",
+        username: 1,
+        firstname: 1,
+        lastname: 1,
+        photoURL: 1,
+        email: 1,
+        phone: 1,
+        accountBalance: 1,
+        mpesaDeposits: 1,
+        withdrawals: 1,
+        chamas: 1,
+        loanRequests: 1,
+        loanRepayments: 1,
+        referrals: 1,
+        // password: 0,
+        // refreshToken: 0,
+        // passwordResetToken: 0,
+        // createdAt: 0,
+        // updatedAt: 0,
+        // _id: 0,
+        // role: 0,
       },
     },
   ]);

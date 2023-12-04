@@ -27,7 +27,7 @@ const login = async (req, res) => {
   return res.status(200).json({
     message: messages.loginSuccess,
     payload: {
-      userId: user.userId,
+      userId: user._id,
       role: user.role,
       status: user.status,
     },

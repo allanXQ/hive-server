@@ -31,6 +31,7 @@ const chamaSchema = new mongoose.Schema(
       required: true,
     },
     type: {
+      //reference types schema
       type: String,
       enum: ["ROSCAs", "ASCAs", "Investment Groups", "Welfare/Social Chamas"],
       required: true,

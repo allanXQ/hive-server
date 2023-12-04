@@ -1,7 +1,5 @@
 require("dotenv").config();
-const crypto = require("crypto");
 
-const id = crypto.randomBytes(16).toString("hex");
 const { users } = require("@models");
 const { generateTokens, setCookies } = require("@utils");
 const { messages } = require("@utils");
@@ -11,7 +9,6 @@ const googleOAuth = async (req, res) => {
   const findUser = await users.findOne({ email });
   if (!findUser) {
     const createUser = await users.create({
-      userId: id,
       email,
       username: email.slice(0, email.indexOf("@")),
       firstname: firstName,
@@ -25,11 +22,11 @@ const googleOAuth = async (req, res) => {
     }
     const tokens = generateTokens(createUser);
     setCookies(res, tokens);
-    const { userId, phone, status, username } = createUser;
+    const { _id, phone, status, username } = createUser;
     return res.status(200).json({
       message: messages.loginSuccess,
       payload: {
-        userId,
+        userId: _id,
         email,
         firstName,
         lastName,
@@ -45,7 +42,7 @@ const googleOAuth = async (req, res) => {
   return res.status(200).json({
     message: messages.loginSuccess,
     payload: {
-      userId: findUser.userId,
+      userId: findUser._id,
       username: findUser.username,
       email: findUser.email,
       firstName: firstName,

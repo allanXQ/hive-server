@@ -5,7 +5,7 @@ const { clearTokens } = require("@utils");
 const logout = async (req, res) => {
   const { userId } = req.body;
   const user = await users.findOneAndUpdate(
-    { userId },
+    { _id: userId },
     {
       $set: { refreshToken: null },
     },

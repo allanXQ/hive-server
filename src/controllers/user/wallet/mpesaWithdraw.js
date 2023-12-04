@@ -41,7 +41,7 @@ const mpesaWithdraw = async (req, res) => {
     await withdrawals.create(
       [
         {
-          userId: updatedUser.userId,
+          userId: updatedUser._id,
           username: updatedUser.username,
           phone,
           amount: intAmount,
@@ -53,7 +53,7 @@ const mpesaWithdraw = async (req, res) => {
 
     await withdrawals
       .find({
-        userId: updatedUser.userId,
+        userId: updatedUser._id,
       })
       .session(session);
 

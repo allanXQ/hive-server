@@ -30,7 +30,7 @@ const tinypesaWebhook = async (req, res) => {
     await mpesaDeposits.create(
       [
         {
-          userId: user.userId,
+          userId: user._id,
           phone: Msisdn,
           amount: Amount,
           mpesaRef: MpesaReceiptNumber || "none",
